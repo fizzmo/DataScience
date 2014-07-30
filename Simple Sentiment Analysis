@@ -50,7 +50,7 @@ text = "Finn is only a tiny bit stupid and not idiotic"
 print("%6.2f %s" % (sentiment(text), text))
  
  
-# Example with downloading from Twitter:
+# Example with downloading from Twitter: #Skip this to test simple single line above
 import simplejson
 import urllib
  
