@@ -1,11 +1,12 @@
 -- 
--- Filter+inner/self-Join, medium file. The instructions are horribly
--- confusing.
+-- Filter+inner/self-Join, small file.
 -- 
-register ./pigtest/myudfs.jar
-raw = load './btc-2010-chunk-000' USING TextLoader as (line:chararray);
+register s3n://uw-cse-344-oregon.aws.amazon.com/myudfs.jar
+raw = LOAD 's3n://uw-cse-344-oregon.aws.amazon.com/btc-2010-chunk-000' USING TextLoader as (line:chararray);
 -- Flatten
-tmp = foreach raw generate FLATTEN(myudfs.RDFSplit3(line)) as (subject:chararray,predicate:chararray,object:chararray);
+tmp = foreach raw generate FLATTEN(myudfs.RDFSplit3(line)) as 
+
+(subject:chararray,predicate:chararray,object:chararray);
 -- Filter
 ff = filter tmp by (subject matches '.*rdfabout\\.com.*');
 f = DISTINCT ff;
@@ -18,4 +19,4 @@ j = JOIN f by object , f2 by subject2;
 -- remove duplicates
 result = distinct j;
 -- emit results
-store result into 'p3b_result' using PigStorage();
+store result into 's3n://fizzmo/example-results';
