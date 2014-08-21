@@ -1,0 +1,6 @@
+(1)
+seaflow <- read.csv(file="seaflow_21min.csv")
+table(seaflow$pop)
+
+(2)
+summary(seaflow)
