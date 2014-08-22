@@ -18,3 +18,9 @@ summary(dfTrain)
 fol <- formula(pop ~ fsc_small + fsc_perp + fsc_big + pe + chl_big + chl_small)
 model <- rpart(fol, method="class", data=Training)
 print(model)
+
+(8)
+dt_predect <- predict(dt_model, newdata=Testing, type="class")
+dt_result = dt_predect == Testing$pop
+summary(dt_result)
+
