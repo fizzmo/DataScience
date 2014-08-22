@@ -10,3 +10,4 @@ seaflow <- read.csv(file="seaflow_21min.csv", stringsAsFactors=FALSE)
 inTrain = createDataPartition(seaflow$file_id, p=.5, list=FALSE)
 dfTrain=seaflow[inTrain,]
 dfTest=seaflow[-inTrain,]
+summary(dfTrain)
