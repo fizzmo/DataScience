@@ -13,3 +13,8 @@ dfTest=seaflow[-inTrain,]
 summary(dfTrain)
 
 (4) ggplot(seaflow, aes(pe, chl_small)) + geom_point(aes(color=pop))
+
+(5,6,7)
+fol <- formula(pop ~ fsc_small + fsc_perp + fsc_big + pe + chl_big + chl_small)
+model <- rpart(fol, method="class", data=Training)
+print(model)
